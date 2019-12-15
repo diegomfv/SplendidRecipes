@@ -1,3 +1,3 @@
-include ':app'
+include ':app', ':domain', ':data', ':usecase'
 rootProject.name='SplendidRecipesMVVM'
 //include ':app', ':data', ':usecases', ':domain', ':testShared'
