@@ -4,17 +4,18 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.diegomfv.splendidrecipesmvvm.data.model.dto.Recipe
 
-@Database(entities = [Movie::class], version = 1)
-abstract class MovieDatabase : RoomDatabase() {
+@Database(entities = [Recipe::class], version = 1)
+abstract class RecipeDatabase : RoomDatabase() {
 
     companion object {
         fun build(context: Context) = Room.databaseBuilder(
             context,
-            MovieDatabase::class.java,
+            RecipeDatabase::class.java,
             "movie-db"
         ).build()
     }
 
-    abstract fun movieDao(): MovieDao
+    abstract fun movieDao(): RecipeDao
 }
