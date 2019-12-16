@@ -7,7 +7,7 @@ import com.diegomfv.splendidrecipesmvvm.RecipesApp
 import com.diegomfv.splendidrecipesmvvm.data.model.dto.Recipe
 
 
-class MainViewModel(val app: RecipesApp) : AndroidViewModel (app) {
+class MainActivityViewModel(val app: RecipesApp) : AndroidViewModel (app) {
 
     private val _model = MutableLiveData<UiModel>()
     val model: LiveData<UiModel>
@@ -26,9 +26,9 @@ class MainViewModel(val app: RecipesApp) : AndroidViewModel (app) {
 //        _model.value = UiModel.Navigation(recipe)
 //    }
 
-    override fun onCleared() {
-        super.onCleared()
-    }
+//    override fun onCleared() {
+//        super.onCleared()
+//    }
 
     sealed class UiModel {
         object Loading : UiModel()

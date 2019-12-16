@@ -6,7 +6,7 @@ class RecipesApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
+        initDI()
 
 
 
