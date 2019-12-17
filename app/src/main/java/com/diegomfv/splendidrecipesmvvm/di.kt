@@ -31,7 +31,7 @@ private val appModule = module {
 //    factory<LocationDataSource> { PlayServicesLocationDataSource(get()) }
 //    factory<PermissionChecker> { AndroidPermissionChecker(get()) }
     single<CoroutineDispatcher> { Dispatchers.Main }
-//    single(named("baseUrl")) { "https://api.themoviedb.org/3/" }
+    single(named("baseUrl")) { "https://api.spoonacular.com/recipes/" }
 //    single { TheMovieDb(get(named("baseUrl"))) }
 }
 

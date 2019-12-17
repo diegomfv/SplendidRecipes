@@ -30,9 +30,9 @@ androidExtensions {
 }
 
 dependencies {
-//    implementation project(":data")
-//    implementation project(":domain")
-//    implementation project(":usecases")
+    implementation project(":data")
+    implementation project(":domain")
+    implementation project(":usecase")
 
     implementation androidLibs.values()
     implementation kotlinLibs.values()

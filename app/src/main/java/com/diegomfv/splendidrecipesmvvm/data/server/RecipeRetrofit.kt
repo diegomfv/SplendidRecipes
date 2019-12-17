@@ -13,7 +13,7 @@ class RecipeRetrofit(baseUrl: String) {
         OkHttpClient.Builder().addInterceptor(this).build()
     }
 
-    val service: SpoonacularServerEndpoints = Retrofit.Builder()
+    val spoonacularServerEndpoints: SpoonacularServerEndpoints = Retrofit.Builder()
         .baseUrl(baseUrl)
         .client(okHttpClient)
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
