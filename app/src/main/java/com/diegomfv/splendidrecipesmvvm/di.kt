@@ -31,7 +31,7 @@ private val appModule = module {
 //    factory<LocationDataSource> { PlayServicesLocationDataSource(get()) }
 //    factory<PermissionChecker> { AndroidPermissionChecker(get()) }
     single<CoroutineDispatcher> { Dispatchers.Main }
-    single(named("baseUrl")) { "https://api.themoviedb.org/3/" }
+//    single(named("baseUrl")) { "https://api.themoviedb.org/3/" }
 //    single { TheMovieDb(get(named("baseUrl"))) }
 }
 
@@ -42,12 +42,12 @@ val dataModule = module {
 
 private val scopesModule = module {
     scope(named<MainActivity>()) {
-        viewModel { MainActivityViewModel(get()) }
+        viewModel { MainActivityViewModel() }
 //        scoped { GetPopularMovies(get()) }
     }
 
     scope(named<DetailActivity>()) {
-        viewModel { (id: Int) -> DetailActivityViewModel(get()) }
+        viewModel { DetailActivityViewModel() }
 //        scoped { FindMovieById(get()) }
 //        scoped { ToggleMovieFavorite(get()) }
     }

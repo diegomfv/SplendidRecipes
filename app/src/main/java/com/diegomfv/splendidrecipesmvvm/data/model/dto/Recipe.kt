@@ -42,4 +42,52 @@ data class Recipe (
     @SerializedName("dishTypes") val dishTypes: List<String>?,
     @SerializedName("extendedIngredients") val extendedIngredients: List<ExtendedIngredient>?,
     @SerializedName("winePairing") val winePairing: WinePairing?
-) : Parcelable
+) : Parcelable {
+
+    companion object {
+
+        fun withId(id: Int) : Recipe = empty().copy(id = id)
+
+        fun empty() : Recipe = Recipe(
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null)
+    }
+
+}
+
+
+
