@@ -1,6 +1,5 @@
 package com.diegomfv.splendidrecipesmvvm.data.server
 
-import com.diegomfv.splendidrecipesmvvm.data.server.MovieDbResult
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query
