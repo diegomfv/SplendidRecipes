@@ -8,14 +8,14 @@ import com.diegomfv.splendidrecipesmvvm.data.model.dto.Recipe
 
 @Database(entities = [Recipe::class], version = 1)
 abstract class RecipeDatabase : RoomDatabase() {
-
-    companion object {
-        fun build(context: Context) = Room.databaseBuilder(
-            context,
-            RecipeDatabase::class.java,
-            "movie-db"
-        ).build()
-    }
-
-    abstract fun movieDao(): RecipeDao
+//
+//    companion object {
+//        fun build(context: Context) = Room.databaseBuilder(
+//            context,
+//            RecipeDatabase::class.java,
+//            "movie-db"
+//        ).build()
+//    }
+//
+//    abstract fun movieDao(): RecipeDao
 }
