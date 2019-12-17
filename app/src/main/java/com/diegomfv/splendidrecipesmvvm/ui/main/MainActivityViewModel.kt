@@ -8,6 +8,16 @@ import com.diegomfv.splendidrecipesmvvm.ui.common.logSth
 
 class MainActivityViewModel : ViewModel() {
 
+    val dummyList by lazy {
+        listOf(
+            Recipe.withId(1),
+            Recipe.withId(2),
+            Recipe.withId(3),
+            Recipe.withId(4),
+            Recipe.withId(5)
+        )
+    }
+
     private val _model = MutableLiveData<UiModel>()
     val model: LiveData<UiModel>
         get() {
@@ -24,15 +34,7 @@ class MainActivityViewModel : ViewModel() {
 
     //TODO Dummy for the moment
     fun refreshAdapter() {
-        _model.value = UiModel.Content(
-            listOf(
-                Recipe.withId(1),
-                Recipe.withId(2),
-                Recipe.withId(3),
-                Recipe.withId(4),
-                Recipe.withId(5)
-            )
-        )
+        _model.value = UiModel.Content(dummyList)
     }
 
 //    override fun onCleared() {
