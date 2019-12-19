@@ -21,6 +21,11 @@ class MainActivity : AppCompatActivity() {
         recycler_view.adapter = adapter
         mainActivityViewModel.model.observe(this, Observer(::updateUI))
 
+
+        button.setOnClickListener {
+            mainActivityViewModel.refreshAdapter()
+        }
+
     }
 
     private fun updateUI (uiModel: MainActivityViewModel.UiModel) {

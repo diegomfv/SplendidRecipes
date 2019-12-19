@@ -1,7 +1,5 @@
 package com.diegomfv.domain
 
-class Recipe (
-
-
-
+data class Recipe (
+    val title: String
 )

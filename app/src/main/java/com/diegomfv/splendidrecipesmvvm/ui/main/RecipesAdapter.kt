@@ -4,11 +4,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.diegomfv.splendidrecipesmvvm.R
-import com.diegomfv.splendidrecipesmvvm.data.model.dto.Recipe
 import com.diegomfv.splendidrecipesmvvm.ui.common.basicDiffUtil
 import com.diegomfv.splendidrecipesmvvm.ui.common.inflate
 import kotlinx.android.synthetic.main.item_recipe.view.*
-
+import com.diegomfv.domain.Recipe
 
 class RecipesAdapter(private val listener: (Recipe) -> Unit) :
     RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
@@ -33,7 +32,7 @@ class RecipesAdapter(private val listener: (Recipe) -> Unit) :
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(recipe: Recipe) {
-            itemView.title.text = recipe.id.toString()
+            itemView.title.text = recipe.title
 //            itemView.recipeTitle.text = recipe.title
 //            itemView.recipeCover.loadUrl("https://image.tmdb.org/t/p/w185/${recipe.posterPath}")
         }
