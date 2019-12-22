@@ -2,7 +2,6 @@ package com.diegomfv.splendidrecipesmvvm.ui.common
 
 import androidx.annotation.CallSuper
 import androidx.lifecycle.ViewModel
-import com.antonioleiva.mymovies.ui.common.Scope
 import kotlinx.coroutines.CoroutineDispatcher
 
 abstract class ScopedViewModel(uiDispatcher: CoroutineDispatcher) : ViewModel(),

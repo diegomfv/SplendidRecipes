@@ -1,4 +1,4 @@
-package com.antonioleiva.mymovies.ui.common
+package com.diegomfv.splendidrecipesmvvm.ui.common
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope

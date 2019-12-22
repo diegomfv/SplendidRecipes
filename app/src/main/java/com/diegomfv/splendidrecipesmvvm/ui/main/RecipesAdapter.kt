@@ -8,6 +8,7 @@ import com.diegomfv.splendidrecipesmvvm.ui.common.basicDiffUtil
 import com.diegomfv.splendidrecipesmvvm.ui.common.inflate
 import kotlinx.android.synthetic.main.item_recipe.view.*
 import com.diegomfv.domain.Recipe
+import com.diegomfv.splendidrecipesmvvm.ui.common.loadUrl
 
 class RecipesAdapter(private val listener: (Recipe) -> Unit) :
     RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
@@ -32,9 +33,25 @@ class RecipesAdapter(private val listener: (Recipe) -> Unit) :
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(recipe: Recipe) {
-            itemView.title.text = recipe.title
+            itemView.title.text = "Title: ${recipe.title}"
+            itemView.cuisines.text = "Cuisines: ${recipe.cuisines.joinToString(separator = ", ")}"
+            itemView.dishTypes.text= "Dish types: ${recipe.dishTypes.joinToString(separator = ", ")}"
+            itemView.image.loadUrl(recipe.imageUrl)
+
 //            itemView.recipeTitle.text = recipe.title
 //            itemView.recipeCover.loadUrl("https://image.tmdb.org/t/p/w185/${recipe.posterPath}")
         }
     }
 }
+
+//fun DTORecipe.fromDTOToDomain () : Recipe {
+//    return Recipe(
+//        id = id ?: 0,
+//        title = title ?: "null title",
+//        cuisines = cuisines ?: listOf(),
+//        imageUrl = image ?: "",
+//        dishTypes = dishTypes ?: listOf(),
+//        readyInMinutes = readyInMinutes ?: 0
+//    )
+//
+//}
