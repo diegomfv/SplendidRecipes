@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.diegomfv.splendidrecipesmvvm.R
+import com.diegomfv.splendidrecipesmvvm.ui.common.startActivity
+import com.diegomfv.splendidrecipesmvvm.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.scope.currentScope
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -19,7 +21,9 @@ class MainActivity : AppCompatActivity() {
 
         adapter = RecipesAdapter (mainActivityViewModel::onRecipeClicked)
         recycler_view.adapter = adapter
+
         mainActivityViewModel.model.observe(this, Observer(::updateUI))
+
 
 
         button.setOnClickListener {
@@ -32,8 +36,8 @@ class MainActivity : AppCompatActivity() {
 
         when (uiModel) {
             is MainActivityViewModel.UiModel.Content -> adapter.recipes = uiModel.recipes
+            is MainActivityViewModel.UiModel.Navigation -> startActivity<DetailActivity> {  }
         }
-
     }
 
 }
