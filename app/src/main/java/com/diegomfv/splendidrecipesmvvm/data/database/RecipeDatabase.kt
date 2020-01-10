@@ -4,18 +4,20 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.diegomfv.splendidrecipesmvvm.data.model.dto.Recipe
+import androidx.room.TypeConverters
+import com.diegomfv.splendidrecipesmvvm.data.database.converter.ListStringConverter
 
-//@Database(entities = [Recipe::class], version = 1)
-//abstract class RecipeDatabase : RoomDatabase() {
-////
-////    companion object {
-////        fun build(context: Context) = Room.databaseBuilder(
-////            context,
-////            RecipeDatabase::class.java,
-////            "movie-db"
-////        ).build()
-////    }
-////
-////    abstract fun movieDao(): RecipeDao
-//}
+@Database(entities = [Recipe::class], version = 1)
+@TypeConverters(ListStringConverter::class)
+abstract class RecipesDatabase : RoomDatabase() {
+
+    companion object {
+        fun build(context: Context) = Room.databaseBuilder(
+            context,
+            RecipesDatabase::class.java,
+            "recipes-db"
+        ).build()
+    }
+
+    abstract fun recipeDao(): RecipeDao
+}

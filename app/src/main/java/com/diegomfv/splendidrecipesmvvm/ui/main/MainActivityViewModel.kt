@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.diegomfv.domain.Recipe
 import com.diegomfv.splendidrecipesmvvm.ui.common.ScopedViewModel
 import com.diegomfv.usecase.GetRandomRecipesUseCase
+import com.diegomfv.data.common.Response
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -30,7 +31,11 @@ class MainActivityViewModel (
     //TODO Dummy for the moment
     fun refreshAdapter() {
         GlobalScope.launch {
-            _model.postValue(UiModel.Content(getRandomRecipesUseCase.invoke()))
+            val randomRecipes = getRandomRecipesUseCase.invoke()
+            when (randomRecipes) {
+                is Response.Success -> _model.postValue(UiModel.Content(randomRecipes.result))
+                is Response.Failure -> _model.postValue(UiModel.Error(randomRecipes.throwable))
+            }
         }
     }
 
@@ -41,6 +46,7 @@ class MainActivityViewModel (
     sealed class UiModel {
         object Loading : UiModel()
         data class Content(val recipes: List<Recipe>) : UiModel()
+        data class Error(val throwable : Throwable) : UiModel()
         data class Navigation(val recipe: Recipe) : UiModel()
         object RequestLocationPermission : UiModel()
     }

@@ -2,7 +2,10 @@ package com.diegomfv.splendidrecipesmvvm
 
 import android.app.Application
 import com.diegomfv.data.repository.RecipesRepository
+import com.diegomfv.data.source.LocalDataSource
 import com.diegomfv.data.source.RemoteDataSource
+import com.diegomfv.splendidrecipesmvvm.data.database.RecipesDatabase
+import com.diegomfv.splendidrecipesmvvm.data.database.RoomDataSource
 import com.diegomfv.splendidrecipesmvvm.data.server.RecipeRemoteDataSource
 import com.diegomfv.splendidrecipesmvvm.data.server.RecipeRetrofit
 import com.diegomfv.splendidrecipesmvvm.ui.detail.DetailActivity
@@ -31,8 +34,8 @@ fun Application.initDI() {
 private val appModule = module {
     single(named("apiKey")) { androidApplication().getString(R.string.api_key) }
     single(named("baseUrl")) { "https://api.spoonacular.com/" }
-//    single { RecipesDatabase.build(get()) }
-//    factory<LocalDataSource> { RoomDataSource(get()) }
+    single { RecipesDatabase.build(get()) }
+    factory<LocalDataSource> { RoomDataSource(get()) }
     factory<RemoteDataSource> { RecipeRemoteDataSource(get()) }
 //    factory<LocationDataSource> { PlayServicesLocationDataSource(get()) }
 //    factory<PermissionChecker> { AndroidPermissionChecker(get()) }
@@ -51,12 +54,12 @@ val usecaseModule = module {
 
 private val scopesModule = module {
     scope(named<MainActivity>()) {
-        viewModel { MainActivityViewModel(get()) }
+        viewModel { MainActivityViewModel(get(), get()) }
 //        scoped { GetPopularMovies(get()) }
     }
 
     scope(named<DetailActivity>()) {
-        viewModel { DetailActivityViewModel() }
+        viewModel { DetailActivityViewModel(get()) }
 //        scoped { FindMovieById(get()) }
 //        scoped { ToggleMovieFavorite(get()) }
     }

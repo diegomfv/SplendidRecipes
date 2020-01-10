@@ -1,5 +1,6 @@
 package com.diegomfv.data.repository
 
+import com.diegomfv.data.common.Response
 import com.diegomfv.data.source.RemoteDataSource
 import com.diegomfv.domain.Recipe
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +14,7 @@ class RecipesRepository(
     //TODO Why is the key injected here and not later?
     private val key: String ) {
 
-    suspend fun getRandomRecipes(tags: String, amountOfRecipes: Int = 5) : List<Recipe> {
+    suspend fun getRandomRecipes(tags: String, amountOfRecipes: Int = 5) : Response<List<Recipe>> {
         return withContext(Dispatchers.IO) {
             remoteDataSource.getRandomRecipes(tags, amountOfRecipes, key)
         }

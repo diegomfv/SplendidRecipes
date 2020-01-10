@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.diegomfv.splendidrecipesmvvm.R
 import com.diegomfv.splendidrecipesmvvm.ui.common.startActivity
+import com.diegomfv.splendidrecipesmvvm.ui.common.toast
 import com.diegomfv.splendidrecipesmvvm.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.scope.currentScope
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         when (uiModel) {
             is MainActivityViewModel.UiModel.Content -> adapter.recipes = uiModel.recipes
+            is MainActivityViewModel.UiModel.Error -> toast(uiModel.throwable.message ?: "Null Error") //TODO Add Error mapper
             is MainActivityViewModel.UiModel.Navigation -> startActivity<DetailActivity> {  }
         }
     }
