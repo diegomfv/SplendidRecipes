@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.diegomfv.splendidrecipesmvvm.data.database.converter.ListStringConverter
 
-@Database(entities = [Recipe::class], version = 1)
+@Database(entities = [RecipeDatabaseDTO::class], version = 1)
 @TypeConverters(ListStringConverter::class)
 abstract class RecipesDatabase : RoomDatabase() {
 

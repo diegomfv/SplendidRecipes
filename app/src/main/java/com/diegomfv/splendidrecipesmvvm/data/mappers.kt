@@ -1,12 +1,12 @@
 package com.diegomfv.splendidrecipesmvvm.data
 
-import com.diegomfv.splendidrecipesmvvm.data.model.dto.Recipe as RecipeDTO
-import com.diegomfv.domain.Recipe as RecipeDomain
-import com.diegomfv.splendidrecipesmvvm.data.database.Recipe as RecipeDatabase
+import com.diegomfv.splendidrecipesmvvm.data.model.dto.RecipeServerDTO
+import com.diegomfv.domain.Recipe
+import com.diegomfv.splendidrecipesmvvm.data.database.RecipeDatabaseDTO
 
 //TODO
-fun RecipeDTO.fromDTOToDomain () : RecipeDomain {
-    return RecipeDomain(
+fun RecipeServerDTO.fromServerDTOToDomain () : Recipe {
+    return Recipe(
         id = id ?: 0,
         title = title ?: "null title",
         cuisines = cuisines ?: listOf(),
@@ -15,8 +15,8 @@ fun RecipeDTO.fromDTOToDomain () : RecipeDomain {
         readyInMinutes = readyInMinutes ?: 0)
 }
 
-fun RecipeDTO.fromDTOToDatabase () : RecipeDatabase {
-    return RecipeDatabase(
+fun RecipeServerDTO.fromServerDTOToDatabaseDTO () : RecipeDatabaseDTO {
+    return RecipeDatabaseDTO(
         id = id ?: 0,
         title = title ?: "null title",
         cuisines = cuisines ?: listOf(),
@@ -25,8 +25,8 @@ fun RecipeDTO.fromDTOToDatabase () : RecipeDatabase {
         readyInMinutes = readyInMinutes ?: 0)
 }
 
-fun RecipeDomain.fromDomainToDTO () : RecipeDatabase {
-    return RecipeDatabase(
+fun Recipe.fromDomainToDatabaseDTO () : RecipeDatabaseDTO {
+    return RecipeDatabaseDTO(
         id = id,
         title = title,
         cuisines = cuisines,
@@ -35,18 +35,8 @@ fun RecipeDomain.fromDomainToDTO () : RecipeDatabase {
         readyInMinutes = readyInMinutes)
 }
 
-fun RecipeDomain.fromDomainToDatabase () : RecipeDatabase {
-    return RecipeDatabase(
-        id = id,
-        title = title,
-        cuisines = cuisines,
-        imageUrl = imageUrl,
-        dishTypes = dishTypes,
-        readyInMinutes = readyInMinutes)
-}
-
-fun RecipeDatabase.fromDatabaseToDomain () : RecipeDomain {
-    return RecipeDomain(
+fun RecipeDatabaseDTO.fromDatabaseDTOToDomain () : Recipe {
+    return Recipe(
         id = id,
         title = title,
         cuisines = cuisines,

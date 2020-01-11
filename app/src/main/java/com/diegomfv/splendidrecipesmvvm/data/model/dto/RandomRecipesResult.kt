@@ -6,12 +6,12 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class RandomRecipesResult(
-    @SerializedName("recipes") val recipes: List<Recipe>?
+    @SerializedName("recipes") val recipeServerDTOS: List<RecipeServerDTO>?
 ) : Parcelable
 
 
 @Parcelize
-data class Recipe(
+data class RecipeServerDTO(
     @SerializedName("id") val id: Int?,
     @SerializedName("title") val title: String?,
     @SerializedName("image") val image: String?,

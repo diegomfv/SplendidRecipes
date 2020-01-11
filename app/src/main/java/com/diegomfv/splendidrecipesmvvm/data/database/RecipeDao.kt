@@ -1,23 +1,22 @@
 package com.diegomfv.splendidrecipesmvvm.data.database
 
 import androidx.room.*
-import com.diegomfv.splendidrecipesmvvm.data.database.Recipe as Recipe
 
 @Dao
 interface RecipeDao {
 
-    @Query("SELECT * FROM Recipe")
-    fun getAllRecipes(): List<Recipe>
+    @Query("SELECT * FROM RecipeDatabaseDTO")
+    fun getAllRecipes(): List<RecipeDatabaseDTO>
 
-    @Query("SELECT * FROM Recipe WHERE id = :id")
-    fun findById(id: Int): Recipe
+    @Query("SELECT * FROM RecipeDatabaseDTO WHERE id = :id")
+    fun findById(id: Int): RecipeDatabaseDTO
 
-    @Query("SELECT COUNT(id) FROM Recipe")
-    fun movieCount(): Int
+    @Query("SELECT COUNT(id) FROM RecipeDatabaseDTO")
+    fun recipesCount(): Int
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertRecipes(movies: List<Recipe>)
+    fun insertRecipes(movies: List<RecipeDatabaseDTO>)
 
     @Update
-    fun updateRecipe(movie: Recipe)
+    fun updateRecipe(movie: RecipeDatabaseDTO)
 }
