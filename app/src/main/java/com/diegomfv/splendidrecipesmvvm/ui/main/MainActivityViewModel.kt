@@ -6,6 +6,7 @@ import com.diegomfv.domain.Recipe
 import com.diegomfv.splendidrecipesmvvm.ui.common.ScopedViewModel
 import com.diegomfv.usecase.GetRandomRecipesUseCase
 import com.diegomfv.data.common.Response
+import com.diegomfv.splendidrecipesmvvm.ui.common.Event
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -24,8 +25,10 @@ class MainActivityViewModel (
             return _model
         }
 
+    val event = MutableLiveData<Event<EventModel>>()
+
     fun onRecipeClicked(recipe: Recipe) {
-        _model.value = UiModel.Navigation(recipe)
+        event.value = Event(EventModel.Navigation(recipe))
     }
 
     //TODO Dummy for the moment
@@ -39,15 +42,15 @@ class MainActivityViewModel (
         }
     }
 
-//    override fun onCleared() {
-//        super.onCleared()
-//    }
 
     sealed class UiModel {
         object Loading : UiModel()
         data class Content(val recipes: List<Recipe>) : UiModel()
         data class Error(val throwable : Throwable) : UiModel()
-        data class Navigation(val recipe: Recipe) : UiModel()
-        object RequestLocationPermission : UiModel()
+    }
+
+    sealed class EventModel {
+        data class Navigation(val recipe: Recipe) : EventModel()
+        object RequestLocationPermission : EventModel()
     }
 }
