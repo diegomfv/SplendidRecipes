@@ -4,9 +4,9 @@ import androidx.room.*
 import com.diegomfv.domain.Recipe
 import com.diegomfv.splendidrecipesmvvm.data.database.constants.*
 import com.diegomfv.splendidrecipesmvvm.data.database.mappers.fromDomainToDatabaseDTO
-import com.diegomfv.splendidrecipesmvvm.data.database.model.join.RecipeCuisineJoin
-import com.diegomfv.splendidrecipesmvvm.data.database.model.join.RecipeDishTypeJoin
-import com.diegomfv.splendidrecipesmvvm.data.database.model.join.entitities.RecipeAssoc
+import com.diegomfv.splendidrecipesmvvm.data.database.model.join.entitities.RecipeCuisineJoin
+import com.diegomfv.splendidrecipesmvvm.data.database.model.join.entitities.RecipeDishTypeJoin
+import com.diegomfv.splendidrecipesmvvm.data.database.model.join.model.RecipeAssoc
 import com.diegomfv.splendidrecipesmvvm.data.database.model.main.CuisineDbDTO
 import com.diegomfv.splendidrecipesmvvm.data.database.model.main.DishTypeDbDTO
 import com.diegomfv.splendidrecipesmvvm.data.database.model.main.RecipeDbDTO
@@ -99,13 +99,23 @@ interface RecipeDao {
             recipe.cuisines
                 .mapNotNull { findCuisineByName(it).cuisineId }
                 .forEach { cuisineId ->
-                    insertRecipeCuisineJoin(RecipeCuisineJoin(recipeId, cuisineId))
+                    insertRecipeCuisineJoin(
+                        RecipeCuisineJoin(
+                            recipeId,
+                            cuisineId
+                        )
+                    )
                 }
 
             recipe.dishTypes
                 .mapNotNull { findDishTypeByName(it).dishTypeId }
                 .forEach { dishTypeId ->
-                    insertRecipeDishTypeJoin(RecipeDishTypeJoin(recipeId, dishTypeId))
+                    insertRecipeDishTypeJoin(
+                        RecipeDishTypeJoin(
+                            recipeId,
+                            dishTypeId
+                        )
+                    )
                 }
         }
     }

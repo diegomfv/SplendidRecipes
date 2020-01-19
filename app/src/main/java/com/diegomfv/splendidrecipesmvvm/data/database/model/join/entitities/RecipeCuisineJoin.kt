@@ -1,4 +1,4 @@
-package com.diegomfv.splendidrecipesmvvm.data.database.model.join
+package com.diegomfv.splendidrecipesmvvm.data.database.model.join.entitities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

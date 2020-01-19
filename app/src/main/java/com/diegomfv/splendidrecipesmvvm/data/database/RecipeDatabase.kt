@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.diegomfv.splendidrecipesmvvm.data.database.model.join.RecipeCuisineJoin
-import com.diegomfv.splendidrecipesmvvm.data.database.model.join.RecipeDishTypeJoin
+import com.diegomfv.splendidrecipesmvvm.data.database.model.join.entitities.RecipeCuisineJoin
+import com.diegomfv.splendidrecipesmvvm.data.database.model.join.entitities.RecipeDishTypeJoin
 import com.diegomfv.splendidrecipesmvvm.data.database.model.main.CuisineDbDTO
 import com.diegomfv.splendidrecipesmvvm.data.database.model.main.DishTypeDbDTO
 import com.diegomfv.splendidrecipesmvvm.data.database.model.main.RecipeDbDTO

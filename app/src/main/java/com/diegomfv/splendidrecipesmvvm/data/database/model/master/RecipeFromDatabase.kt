@@ -2,8 +2,8 @@ package com.diegomfv.splendidrecipesmvvm.data.database.model.master
 
 import androidx.room.*
 import com.diegomfv.splendidrecipesmvvm.data.database.constants.*
-import com.diegomfv.splendidrecipesmvvm.data.database.model.join.RecipeCuisineJoin
-import com.diegomfv.splendidrecipesmvvm.data.database.model.join.RecipeDishTypeJoin
+import com.diegomfv.splendidrecipesmvvm.data.database.model.join.entitities.RecipeCuisineJoin
+import com.diegomfv.splendidrecipesmvvm.data.database.model.join.entitities.RecipeDishTypeJoin
 import com.diegomfv.splendidrecipesmvvm.data.database.model.main.CuisineDbDTO
 import com.diegomfv.splendidrecipesmvvm.data.database.model.main.DishTypeDbDTO
 

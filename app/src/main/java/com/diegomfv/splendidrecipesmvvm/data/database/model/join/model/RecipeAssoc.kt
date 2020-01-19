@@ -1,4 +1,4 @@
-package com.diegomfv.splendidrecipesmvvm.data.database.model.join.entitities
+package com.diegomfv.splendidrecipesmvvm.data.database.model.join.model
 
 import androidx.room.Embedded
 import androidx.room.Junction
@@ -6,8 +6,8 @@ import androidx.room.Relation
 import com.diegomfv.splendidrecipesmvvm.data.database.constants.CUISINE_ID
 import com.diegomfv.splendidrecipesmvvm.data.database.constants.DISH_TYPE_ID
 import com.diegomfv.splendidrecipesmvvm.data.database.constants.RECIPE_ID
-import com.diegomfv.splendidrecipesmvvm.data.database.model.join.RecipeCuisineJoin
-import com.diegomfv.splendidrecipesmvvm.data.database.model.join.RecipeDishTypeJoin
+import com.diegomfv.splendidrecipesmvvm.data.database.model.join.entitities.RecipeCuisineJoin
+import com.diegomfv.splendidrecipesmvvm.data.database.model.join.entitities.RecipeDishTypeJoin
 import com.diegomfv.splendidrecipesmvvm.data.database.model.main.CuisineDbDTO
 import com.diegomfv.splendidrecipesmvvm.data.database.model.main.DishTypeDbDTO
 import com.diegomfv.splendidrecipesmvvm.data.database.model.main.RecipeDbDTO

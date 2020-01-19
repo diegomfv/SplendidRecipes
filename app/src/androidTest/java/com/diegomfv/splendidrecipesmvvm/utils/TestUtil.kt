@@ -1,7 +1,7 @@
 package com.diegomfv.splendidrecipesmvvm.utils
 
 import com.diegomfv.domain.Recipe
-import com.diegomfv.splendidrecipesmvvm.data.database.model.join.RecipeCuisineJoin
+import com.diegomfv.splendidrecipesmvvm.data.database.model.join.entitities.RecipeCuisineJoin
 import com.diegomfv.splendidrecipesmvvm.data.database.model.main.CuisineDbDTO
 import com.diegomfv.splendidrecipesmvvm.data.database.model.main.DishTypeDbDTO
 import com.diegomfv.splendidrecipesmvvm.data.database.model.main.RecipeDbDTO
