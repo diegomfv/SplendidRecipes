@@ -4,21 +4,19 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.diegomfv.splendidrecipesmvvm.data.database.model.join.entitities.RecipeCuisineJoin
-import com.diegomfv.splendidrecipesmvvm.data.database.model.join.entitities.RecipeDishTypeJoin
-import com.diegomfv.splendidrecipesmvvm.data.database.model.main.CuisineDbDTO
-import com.diegomfv.splendidrecipesmvvm.data.database.model.main.DishTypeDbDTO
-import com.diegomfv.splendidrecipesmvvm.data.database.model.main.RecipeDbDTO
-import com.diegomfv.splendidrecipesmvvm.data.database.model.main.RestrictionDbDTO
+import com.diegomfv.splendidrecipesmvvm.data.database.model.entititiesjoin.RecipeCuisineAssoc
+import com.diegomfv.splendidrecipesmvvm.data.database.model.entititiesjoin.RecipeDishTypeAssoc
+import com.diegomfv.splendidrecipesmvvm.data.database.model.entities.CuisineDb
+import com.diegomfv.splendidrecipesmvvm.data.database.model.entities.DishTypeDb
+import com.diegomfv.splendidrecipesmvvm.data.database.model.entities.RecipeDb
 
 @Database(
     entities = [
-        RecipeDbDTO::class,
-        CuisineDbDTO::class,
-        DishTypeDbDTO::class,
-        RestrictionDbDTO::class,
-        RecipeCuisineJoin::class,
-        RecipeDishTypeJoin::class
+        RecipeDb::class,
+        CuisineDb::class,
+        DishTypeDb::class,
+        RecipeCuisineAssoc::class,
+        RecipeDishTypeAssoc::class
     ],
     version = 1,
     exportSchema = false

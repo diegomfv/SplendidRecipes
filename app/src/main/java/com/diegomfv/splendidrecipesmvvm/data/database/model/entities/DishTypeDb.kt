@@ -1,4 +1,4 @@
-package com.diegomfv.splendidrecipesmvvm.data.database.model.main
+package com.diegomfv.splendidrecipesmvvm.data.database.model.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -10,7 +10,7 @@ import com.diegomfv.splendidrecipesmvvm.data.database.constants.DISH_TYPE_TABLE_
 
 @Entity (tableName = DISH_TYPE_TABLE_NAME,
     indices = [Index(value = [DISH_TYPE_NAME], unique = true)])
-data class DishTypeDbDTO(
+data class DishTypeDb(
 
     @PrimaryKey (autoGenerate = true)
     @ColumnInfo(name = DISH_TYPE_ID)

@@ -11,7 +11,6 @@ const val TITLE = "title"
 const val READY_IN_MINUTES = "ready_in_minutes"
 const val IMAGE_URL = "image_url"
 
-
 const val INGREDIENT_TABLE_NAME = "ingredient"
 const val INGREDIENT_ID = "ingredient_id"
 const val INGREDIENT = "ingredient"

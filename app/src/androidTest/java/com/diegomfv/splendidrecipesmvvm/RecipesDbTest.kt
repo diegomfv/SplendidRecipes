@@ -8,8 +8,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.diegomfv.domain.Recipe
 import com.diegomfv.splendidrecipesmvvm.data.database.RecipeDao
 import com.diegomfv.splendidrecipesmvvm.data.database.RecipesDatabase
-import com.diegomfv.splendidrecipesmvvm.data.database.model.main.CuisineDbDTO
-import com.diegomfv.splendidrecipesmvvm.data.database.model.main.RecipeDbDTO
+import com.diegomfv.splendidrecipesmvvm.data.database.model.entities.CuisineDb
+import com.diegomfv.splendidrecipesmvvm.data.database.model.entities.RecipeDb
 import com.diegomfv.splendidrecipesmvvm.utils.TestUtil
 import org.hamcrest.CoreMatchers.equalTo
 import org.junit.After
@@ -44,7 +44,7 @@ class RecipesDbTest {
     @Throws(Exception::class)
     fun writeRecipeAndReadList() {
 
-        val recipe: RecipeDbDTO = TestUtil.createRecipeDTO(0)
+        val recipe: RecipeDb = TestUtil.createRecipeDTO(0)
         recipeDao.insertRecipe(recipe)
 
         val recipeFromDb = recipeDao.findRecipeById(0)
@@ -56,7 +56,7 @@ class RecipesDbTest {
     @Throws(Exception::class)
     fun ensureCuisineUniquenessTest() {
 
-        val cuisine: CuisineDbDTO = TestUtil.createCuisineDbDTO()
+        val cuisine: CuisineDb = TestUtil.createCuisineDbDTO()
         recipeDao.insertCuisine(cuisine)
         recipeDao.insertCuisine(cuisine)
 

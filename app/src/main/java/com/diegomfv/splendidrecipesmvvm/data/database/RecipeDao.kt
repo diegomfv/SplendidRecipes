@@ -4,66 +4,66 @@ import androidx.room.*
 import com.diegomfv.domain.Recipe
 import com.diegomfv.splendidrecipesmvvm.data.database.constants.*
 import com.diegomfv.splendidrecipesmvvm.data.database.mappers.fromDomainToDatabaseDTO
-import com.diegomfv.splendidrecipesmvvm.data.database.model.join.entitities.RecipeCuisineJoin
-import com.diegomfv.splendidrecipesmvvm.data.database.model.join.entitities.RecipeDishTypeJoin
-import com.diegomfv.splendidrecipesmvvm.data.database.model.join.model.RecipeAssoc
-import com.diegomfv.splendidrecipesmvvm.data.database.model.main.CuisineDbDTO
-import com.diegomfv.splendidrecipesmvvm.data.database.model.main.DishTypeDbDTO
-import com.diegomfv.splendidrecipesmvvm.data.database.model.main.RecipeDbDTO
+import com.diegomfv.splendidrecipesmvvm.data.database.model.entititiesjoin.RecipeCuisineAssoc
+import com.diegomfv.splendidrecipesmvvm.data.database.model.entititiesjoin.RecipeDishTypeAssoc
+import com.diegomfv.splendidrecipesmvvm.data.database.model.assoc.RecipeJoin
+import com.diegomfv.splendidrecipesmvvm.data.database.model.entities.CuisineDb
+import com.diegomfv.splendidrecipesmvvm.data.database.model.entities.DishTypeDb
+import com.diegomfv.splendidrecipesmvvm.data.database.model.entities.RecipeDb
 
 @Dao
 interface RecipeDao {
 
     @Query("SELECT * FROM $RECIPE_TABLE_NAME")
-    fun getAllRecipes(): List<RecipeDbDTO>
+    fun getAllRecipes(): List<RecipeDb>
 
     @Query("SELECT * FROM $CUISINE_TABLE_NAME")
-    fun getAllCuisines(): List<CuisineDbDTO>
+    fun getAllCuisines(): List<CuisineDb>
 
     @Query("SELECT * FROM $DISH_TYPE_TABLE_NAME")
-    fun getAllDishTypes(): List<DishTypeDbDTO>
+    fun getAllDishTypes(): List<DishTypeDb>
 
 
 
     @Transaction
     @Query("SELECT * FROM $RECIPE_CUISINE_TABLE_NAME")
-    fun getAllRecipeCuisineJoin(): List<RecipeCuisineJoin>
+    fun getAllRecipeCuisineJoin(): List<RecipeCuisineAssoc>
 
     @Transaction
     @Query("SELECT * FROM $RECIPE_DISH_TYPE_TABLE_NAME")
-    fun getAllRecipeDishTypeJoin(): List<RecipeDishTypeJoin>
+    fun getAllRecipeDishTypeJoin(): List<RecipeDishTypeAssoc>
 
 
 
     @Transaction
     @Query("SELECT * FROM $RECIPE_TABLE_NAME")
-    fun getRecipeCuisineAssoc(): RecipeAssoc
+    fun getRecipeCuisineAssoc(): RecipeJoin
 
     @Transaction
     @Query("SELECT * FROM $RECIPE_TABLE_NAME")
-    fun getAllRecipeAssoc(): List<RecipeAssoc>
+    fun getAllRecipeAssoc(): List<RecipeJoin>
 
 
 
     @Query("SELECT * FROM $RECIPE_TABLE_NAME WHERE $RECIPE_ID = :id")
-    fun findRecipeById(id: Long): RecipeDbDTO
+    fun findRecipeById(id: Long): RecipeDb
 
     @Query("SELECT * FROM $CUISINE_TABLE_NAME WHERE $CUISINE_ID = :id")
-    fun findCuisineById(id: Long): CuisineDbDTO
+    fun findCuisineById(id: Long): CuisineDb
 
     @Query("SELECT * FROM $RECIPE_CUISINE_TABLE_NAME WHERE $RECIPE_ID = :id")
-    fun findRecipeWithCuisineById(id: Int): RecipeCuisineJoin
+    fun findRecipeWithCuisineById(id: Int): RecipeCuisineAssoc
 
 
 
     @Query("SELECT * FROM $RECIPE_TABLE_NAME WHERE $RECIPE_NAME = :name")
-    fun findRecipeByName(name: String) : RecipeDbDTO
+    fun findRecipeByName(name: String) : RecipeDb
 
     @Query("SELECT * FROM $CUISINE_TABLE_NAME WHERE $CUISINE_NAME = :name")
-    fun findCuisineByName(name: String) : CuisineDbDTO
+    fun findCuisineByName(name: String) : CuisineDb
 
     @Query("SELECT * FROM $DISH_TYPE_TABLE_NAME WHERE $DISH_TYPE_NAME = :name")
-    fun findDishTypeByName(name: String) : DishTypeDbDTO
+    fun findDishTypeByName(name: String) : DishTypeDb
 
 
 
@@ -72,17 +72,17 @@ interface RecipeDao {
 
 
 
-    @Insert(entity = RecipeDbDTO::class, onConflict = OnConflictStrategy.IGNORE)
-    fun insertRecipe(recipe: RecipeDbDTO) : Long
+    @Insert(entity = RecipeDb::class, onConflict = OnConflictStrategy.IGNORE)
+    fun insertRecipe(recipe: RecipeDb) : Long
 
-    @Insert(entity = CuisineDbDTO::class, onConflict = OnConflictStrategy.IGNORE)
-    fun insertCuisine(cuisine: CuisineDbDTO) : Long
+    @Insert(entity = CuisineDb::class, onConflict = OnConflictStrategy.IGNORE)
+    fun insertCuisine(cuisine: CuisineDb) : Long
 
-    @Insert(entity = CuisineDbDTO::class, onConflict = OnConflictStrategy.IGNORE)
-    fun insertCuisines(cuisines: List<CuisineDbDTO>) : List<Long>
+    @Insert(entity = CuisineDb::class, onConflict = OnConflictStrategy.IGNORE)
+    fun insertCuisines(cuisines: List<CuisineDb>) : List<Long>
 
-    @Insert(entity = DishTypeDbDTO::class, onConflict = OnConflictStrategy.IGNORE)
-    fun insertDishTypes(dishTypes: List<DishTypeDbDTO>) : List<Long>
+    @Insert(entity = DishTypeDb::class, onConflict = OnConflictStrategy.IGNORE)
+    fun insertDishTypes(dishTypes: List<DishTypeDb>) : List<Long>
 
 
 
@@ -90,8 +90,8 @@ interface RecipeDao {
     @Transaction
     fun insertRecipe (recipe: Recipe) {
 
-        insertCuisines(recipe.cuisines.map { CuisineDbDTO(cuisineId = null, cuisineName = it) })
-        insertDishTypes(recipe.dishTypes.map { DishTypeDbDTO(dishTypeId = null, dishTypeName = it) })
+        insertCuisines(recipe.cuisines.map { CuisineDb(cuisineId = null, cuisineName = it) })
+        insertDishTypes(recipe.dishTypes.map { DishTypeDb(dishTypeId = null, dishTypeName = it) })
 
         val recipeId = insertRecipe(recipe.fromDomainToDatabaseDTO())
         if (recipeId.notErrorOnQueryInsertion()) {
@@ -100,7 +100,7 @@ interface RecipeDao {
                 .mapNotNull { findCuisineByName(it).cuisineId }
                 .forEach { cuisineId ->
                     insertRecipeCuisineJoin(
-                        RecipeCuisineJoin(
+                        RecipeCuisineAssoc(
                             recipeId,
                             cuisineId
                         )
@@ -111,7 +111,7 @@ interface RecipeDao {
                 .mapNotNull { findDishTypeByName(it).dishTypeId }
                 .forEach { dishTypeId ->
                     insertRecipeDishTypeJoin(
-                        RecipeDishTypeJoin(
+                        RecipeDishTypeAssoc(
                             recipeId,
                             dishTypeId
                         )
@@ -120,19 +120,19 @@ interface RecipeDao {
         }
     }
 
-    @Insert(entity = RecipeCuisineJoin::class, onConflict = OnConflictStrategy.IGNORE)
-    fun insertRecipeCuisineJoin(recipeCuisineJoin: RecipeCuisineJoin)
+    @Insert(entity = RecipeCuisineAssoc::class, onConflict = OnConflictStrategy.IGNORE)
+    fun insertRecipeCuisineJoin(recipeCuisineAssoc: RecipeCuisineAssoc)
 
-    @Insert(entity = RecipeDishTypeJoin::class,onConflict = OnConflictStrategy.IGNORE)
-    fun insertRecipeDishTypeJoin(recipeDishTypeJoin: RecipeDishTypeJoin)
+    @Insert(entity = RecipeDishTypeAssoc::class,onConflict = OnConflictStrategy.IGNORE)
+    fun insertRecipeDishTypeJoin(recipeDishTypeAssoc: RecipeDishTypeAssoc)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertRecipes(recipes: List<RecipeDbDTO>)
+    fun insertRecipes(recipes: List<RecipeDb>)
 
 
 
     @Update
-    fun updateRecipe(recipe: RecipeDbDTO)
+    fun updateRecipe(recipe: RecipeDb)
 
 }
 

@@ -2,7 +2,7 @@ package com.diegomfv.splendidrecipesmvvm.data.database.mappers
 
 import com.diegomfv.splendidrecipesmvvm.data.model.dto.RecipeServerDTO
 import com.diegomfv.domain.Recipe
-import com.diegomfv.splendidrecipesmvvm.data.database.model.main.RecipeDbDTO
+import com.diegomfv.splendidrecipesmvvm.data.database.model.entities.RecipeDb
 
 //TODO
 fun RecipeServerDTO.fromServerDTOToDomain () : Recipe {
@@ -17,8 +17,8 @@ fun RecipeServerDTO.fromServerDTOToDomain () : Recipe {
     )
 }
 
-fun RecipeServerDTO.fromServerDTOToDatabaseDTO () : RecipeDbDTO {
-    return RecipeDbDTO(
+fun RecipeServerDTO.fromServerDTOToDatabaseDTO () : RecipeDb {
+    return RecipeDb(
         id = id ?: 0,
         recipeName = title ?: "null title",
 //        cuisines = cuisines ?: listOf(),
@@ -28,8 +28,8 @@ fun RecipeServerDTO.fromServerDTOToDatabaseDTO () : RecipeDbDTO {
     )
 }
 
-fun Recipe.fromDomainToDatabaseDTO () : RecipeDbDTO {
-    return RecipeDbDTO(
+fun Recipe.fromDomainToDatabaseDTO () : RecipeDb {
+    return RecipeDb(
         id = id,
         recipeName = title,
 //        cuisines = cuisines,
@@ -39,7 +39,7 @@ fun Recipe.fromDomainToDatabaseDTO () : RecipeDbDTO {
     )
 }
 
-fun RecipeDbDTO.fromDatabaseDTOToDomain () : Recipe {
+fun RecipeDb.fromDatabaseDTOToDomain () : Recipe {
     return Recipe(
         id = id,
         title = recipeName,

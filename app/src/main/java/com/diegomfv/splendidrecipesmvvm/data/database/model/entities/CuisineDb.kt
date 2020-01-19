@@ -1,4 +1,4 @@
-package com.diegomfv.splendidrecipesmvvm.data.database.model.main
+package com.diegomfv.splendidrecipesmvvm.data.database.model.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -11,7 +11,7 @@ import com.diegomfv.splendidrecipesmvvm.data.database.constants.CUISINE_TABLE_NA
 @Entity (tableName = CUISINE_TABLE_NAME,
     indices = [Index(value = [CUISINE_NAME], unique = true)]
 )
-data class CuisineDbDTO(
+data class CuisineDb(
 
     @PrimaryKey (autoGenerate = true)
     @ColumnInfo(name = CUISINE_ID)

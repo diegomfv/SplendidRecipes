@@ -1,17 +1,16 @@
 package com.diegomfv.splendidrecipesmvvm.utils
 
 import com.diegomfv.domain.Recipe
-import com.diegomfv.splendidrecipesmvvm.data.database.model.join.entitities.RecipeCuisineJoin
-import com.diegomfv.splendidrecipesmvvm.data.database.model.main.CuisineDbDTO
-import com.diegomfv.splendidrecipesmvvm.data.database.model.main.DishTypeDbDTO
-import com.diegomfv.splendidrecipesmvvm.data.database.model.main.RecipeDbDTO
-import com.diegomfv.splendidrecipesmvvm.data.database.model.main.RestrictionDbDTO
+import com.diegomfv.splendidrecipesmvvm.data.database.model.entititiesjoin.RecipeCuisineAssoc
+import com.diegomfv.splendidrecipesmvvm.data.database.model.entities.CuisineDb
+import com.diegomfv.splendidrecipesmvvm.data.database.model.entities.DishTypeDb
+import com.diegomfv.splendidrecipesmvvm.data.database.model.entities.RecipeDb
 import kotlin.random.Random
 
 object TestUtil {
 
-    fun createRecipeDTO (id: Long) : RecipeDbDTO {
-        return RecipeDbDTO(
+    fun createRecipeDTO (id: Long) : RecipeDb {
+        return RecipeDb(
             id = id,
             recipeName = "Title$id",
             imageUrl = "",
@@ -19,29 +18,22 @@ object TestUtil {
         )
     }
 
-    fun createCuisineDbDTO (id: Long = 0, cuisineName: String? = null) : CuisineDbDTO {
-        return CuisineDbDTO(
+    fun createCuisineDbDTO (id: Long = 0, cuisineName: String? = null) : CuisineDb {
+        return CuisineDb(
             cuisineId = id,
             cuisineName = cuisineName ?: "Cuisine$id"
         )
     }
 
-    fun createRestrictionDbDTO (id: Long) : RestrictionDbDTO {
-        return RestrictionDbDTO(
-            restrictionId = id,
-            restriction = "Restriction$id"
-        )
-    }
-
-    fun createDishTypeDbDTO (id: Long) : DishTypeDbDTO {
-        return DishTypeDbDTO(
+    fun createDishTypeDbDTO (id: Long) : DishTypeDb {
+        return DishTypeDb(
             dishTypeId = id,
             dishTypeName = "DishType$id"
         )
     }
 
-    fun createRecipeCuisineJoin (recipeID: Long, cuisineId: Long) : RecipeCuisineJoin {
-        return RecipeCuisineJoin(
+    fun createRecipeCuisineJoin (recipeID: Long, cuisineId: Long) : RecipeCuisineAssoc {
+        return RecipeCuisineAssoc(
             recipeID,
             cuisineId
         )
