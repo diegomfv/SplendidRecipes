@@ -1,8 +1,8 @@
 package com.diegomfv.splendidrecipesmvvm.data.database
 
 import com.diegomfv.data.source.LocalDataSource
-import com.diegomfv.splendidrecipesmvvm.data.fromDatabaseDTOToDomain
-import com.diegomfv.splendidrecipesmvvm.data.fromDomainToDatabaseDTO
+import com.diegomfv.splendidrecipesmvvm.data.database.mappers.fromDatabaseDTOToDomain
+import com.diegomfv.splendidrecipesmvvm.data.database.mappers.fromDomainToDatabaseDTO
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import com.diegomfv.domain.Recipe as RecipeDomain
@@ -24,7 +24,7 @@ class RoomDataSource(db: RecipesDatabase) : LocalDataSource {
     }
 
     override suspend fun findById(id: Int): RecipeDomain {
-        return recipeDao.findById(id).fromDatabaseDTOToDomain()
+        return recipeDao.findRecipeById(id.toLong()).fromDatabaseDTOToDomain() //TODO Long
     }
 
     override suspend fun update(recipe: RecipeDomain) {

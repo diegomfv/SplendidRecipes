@@ -4,11 +4,25 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
-import com.diegomfv.splendidrecipesmvvm.data.database.converter.ListStringConverter
+import com.diegomfv.splendidrecipesmvvm.data.database.model.join.RecipeCuisineJoin
+import com.diegomfv.splendidrecipesmvvm.data.database.model.join.RecipeDishTypeJoin
+import com.diegomfv.splendidrecipesmvvm.data.database.model.main.CuisineDbDTO
+import com.diegomfv.splendidrecipesmvvm.data.database.model.main.DishTypeDbDTO
+import com.diegomfv.splendidrecipesmvvm.data.database.model.main.RecipeDbDTO
+import com.diegomfv.splendidrecipesmvvm.data.database.model.main.RestrictionDbDTO
 
-@Database(entities = [RecipeDatabaseDTO::class], version = 1)
-@TypeConverters(ListStringConverter::class)
+@Database(
+    entities = [
+        RecipeDbDTO::class,
+        CuisineDbDTO::class,
+        DishTypeDbDTO::class,
+        RestrictionDbDTO::class,
+        RecipeCuisineJoin::class,
+        RecipeDishTypeJoin::class
+    ],
+    version = 1,
+    exportSchema = false
+)
 abstract class RecipesDatabase : RoomDatabase() {
 
     companion object {

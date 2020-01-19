@@ -25,8 +25,6 @@ class MainActivity : AppCompatActivity() {
 
         mainActivityViewModel.model.observe(this, Observer(::updateUI))
 
-
-
         button.setOnClickListener {
             mainActivityViewModel.refreshAdapter()
         }

@@ -12,7 +12,7 @@ data class RandomRecipesResult(
 
 @Parcelize
 data class RecipeServerDTO(
-    @SerializedName("id") val id: Int?,
+    @SerializedName("id") val id: Long?,
     @SerializedName("title") val title: String?,
     @SerializedName("image") val image: String?,
     @SerializedName("imageType") val imageType: String?,
