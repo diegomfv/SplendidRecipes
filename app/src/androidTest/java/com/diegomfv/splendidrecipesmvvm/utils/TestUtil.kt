@@ -2,7 +2,6 @@ package com.diegomfv.splendidrecipesmvvm.utils
 
 import com.diegomfv.domain.Recipe
 import com.diegomfv.splendidrecipesmvvm.data.database.model.join.RecipeCuisineJoin
-import com.diegomfv.splendidrecipesmvvm.data.database.model.join.entitities.RecipeCuisineAssoc
 import com.diegomfv.splendidrecipesmvvm.data.database.model.main.CuisineDbDTO
 import com.diegomfv.splendidrecipesmvvm.data.database.model.main.DishTypeDbDTO
 import com.diegomfv.splendidrecipesmvvm.data.database.model.main.RecipeDbDTO
@@ -37,7 +36,7 @@ object TestUtil {
     fun createDishTypeDbDTO (id: Long) : DishTypeDbDTO {
         return DishTypeDbDTO(
             dishTypeId = id,
-            dishType = "DishType$id"
+            dishTypeName = "DishType$id"
         )
     }
 
@@ -50,13 +49,13 @@ object TestUtil {
 
     var idRecipeCounter : Long = 0
 
-    fun createRecipe (name: String, vararg cuisines: String) : Recipe {
+    fun createRecipe (name: String, listCuisines: List<String>, listDishTypes: List<String>) : Recipe {
         return Recipe(
             id = ++idRecipeCounter,
             title = name,
-            cuisines = cuisines.toList(),
+            cuisines = listCuisines,
             imageUrl = "empty",
-            dishTypes = listOf(),
+            dishTypes = listDishTypes,
             readyInMinutes = Random.nextInt(0, 100),
             ingredients = listOf()
         )

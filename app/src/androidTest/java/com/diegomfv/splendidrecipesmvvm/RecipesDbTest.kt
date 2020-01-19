@@ -65,55 +65,64 @@ class RecipesDbTest {
 
     }
 
-//    @Test
-//    @Throws(Exception::class)
-//    fun writeRecipeAndCuisineAndReadAssociation() {
-//
-//        val recipe: RecipeDbDTO = TestUtil.createRecipeDTO(0)
-//        recipeDao.insertRecipe(recipe)
-//        assertThat(recipeDao.findRecipeById(0), equalTo(recipe))
-//
-//        val cuisine: CuisineDbDTO = TestUtil.createCuisineDbDTO()
-//        recipeDao.insertCuisine(cuisine)
-//        println(recipeDao.getAllCuisines())
-//
-//        val recipeCuisineJoin = TestUtil.createRecipeCuisineJoin(
-//            0,
-//            1
-//        )
-//        recipeDao.insertRecipeCuisineJoin(recipeCuisineJoin)
-//
-//        println(recipeDao.getRecipeCuisineAssoc())
-////        assertThat(recipeDao.getRecipeCuisineAssoc(), equalTo(recipeWithCuisine))
-////
-////        val fromDB = recipeDao.getRecipeCuisineAssoc()
-////        println(fromDB.toString())
-//    }
-
     @Test
     @Throws(Exception::class)
     fun writeRecipesAndReadAssociation() {
 
         val recipes: List<Recipe> = listOf(
-            TestUtil.createRecipe("alpha", "Mediterranean", "Spanish"),
-            TestUtil.createRecipe("beta", "Mediterranean", "Greek"),
-            TestUtil.createRecipe("charlie", "Spanish"),
-            TestUtil.createRecipe("delta", "Italian")
+            TestUtil.createRecipe(
+                "alpha",
+                listOf("Mediterranean", "Spanish"),
+                listOf("lunch")),
+            TestUtil.createRecipe(
+                "beta",
+                listOf("Mediterranean", "Italian"),
+                listOf("lunch", "dinner")
+            ),
+            TestUtil.createRecipe(
+                "charlie",
+                listOf("Spanish"),
+                listOf("lunch", "dinner", "breakfast")
+            ),
+            TestUtil.createRecipe("delta", listOf("Greek"), listOf("dinner")),
+            TestUtil.createRecipe("echo", listOf(), listOf())
         )
 
         recipeDao.insertRecipe(recipes.component1())
         recipeDao.insertRecipe(recipes.component2())
         recipeDao.insertRecipe(recipes.component3())
         recipeDao.insertRecipe(recipes.component4())
+        recipeDao.insertRecipe(recipes.component5())
+        recipeDao.insertRecipe(recipes.component1())
 
-        printDatabaseTest(recipeDao.getAllCuisines().toString())
-        printDatabaseTest(recipeDao.getAllRecipes().toString())
-        printDatabaseTest(recipeDao.getAllRecipeCuisineJoin().toString())
-        printDatabaseTest(recipeDao.getAllRecipeCuisineAssoc().toString())
+        printDatabaseTest("///////////////////")
+        recipeDao.getAllCuisines().forEach {
+            printDatabaseTest(it.toString())
+        }
+
+        printDatabaseTest("///////////////////")
+        recipeDao.getAllDishTypes().forEach {
+            printDatabaseTest(it.toString())
+        }
+
+        printDatabaseTest("///////////////////")
+        recipeDao.getAllRecipeCuisineJoin().forEach {
+            printDatabaseTest(it.toString())
+        }
+
+        printDatabaseTest("///////////////////")
+        recipeDao.getAllRecipeDishTypeJoin().forEach {
+            printDatabaseTest(it.toString())
+        }
+
+        printDatabaseTest("///////////////////")
+        recipeDao.getAllRecipeAssoc().forEach {
+            printDatabaseTest(it.toString())
+        }
 
     }
 
-    fun printDatabaseTest (msg: String?) {
+    fun printDatabaseTest(msg: String?) {
         println("DatabaseTest: $msg")
     }
 }

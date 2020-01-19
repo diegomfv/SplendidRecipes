@@ -3,7 +3,6 @@ package com.diegomfv.splendidrecipesmvvm.data.database.model.join
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
-import androidx.room.ForeignKey.CASCADE
 import com.diegomfv.splendidrecipesmvvm.data.database.constants.CUISINE_ID
 import com.diegomfv.splendidrecipesmvvm.data.database.constants.RECIPE_CUISINE_TABLE_NAME
 import com.diegomfv.splendidrecipesmvvm.data.database.constants.RECIPE_ID
@@ -18,15 +17,15 @@ import com.diegomfv.splendidrecipesmvvm.data.database.model.main.RecipeDbDTO
             entity = RecipeDbDTO::class,
             parentColumns = [RECIPE_ID],
             childColumns = [RECIPE_ID],
-            onUpdate = CASCADE,
-            onDelete = CASCADE
+            onUpdate = ForeignKey.CASCADE,
+            onDelete = ForeignKey.CASCADE
         ),
         ForeignKey(
             entity = CuisineDbDTO::class,
             parentColumns = [CUISINE_ID],
             childColumns = [CUISINE_ID],
-            onUpdate = CASCADE,
-            onDelete = CASCADE
+            onUpdate = ForeignKey.CASCADE,
+            onDelete = ForeignKey.CASCADE
         )
     ]
 )

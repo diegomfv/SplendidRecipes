@@ -19,11 +19,12 @@ const val MEASUREMENT = "measurement"
 
 const val DISH_TYPE_TABLE_NAME = "dish_type"
 const val DISH_TYPE_ID = "dish_type_id"
-const val DISH_TYPE = "dish_type"
+const val DISH_TYPE_NAME = "dish_type_name"
 
 const val CUISINE_TABLE_NAME = "cuisine"
 const val CUISINE_ID = "cuisine_id"
 const val CUISINE_NAME = "cuisine_name"
 
 const val RECIPE_CUISINE_TABLE_NAME = "recipe_cuisine_table_name"
+const val RECIPE_DISH_TYPE_TABLE_NAME = "recipe_dish_type_table_name"
 

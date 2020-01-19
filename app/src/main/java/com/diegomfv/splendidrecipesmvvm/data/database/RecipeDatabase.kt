@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.diegomfv.splendidrecipesmvvm.data.database.model.join.RecipeCuisineJoin
+import com.diegomfv.splendidrecipesmvvm.data.database.model.join.RecipeDishTypeJoin
 import com.diegomfv.splendidrecipesmvvm.data.database.model.main.CuisineDbDTO
 import com.diegomfv.splendidrecipesmvvm.data.database.model.main.DishTypeDbDTO
 import com.diegomfv.splendidrecipesmvvm.data.database.model.main.RecipeDbDTO
@@ -16,7 +17,8 @@ import com.diegomfv.splendidrecipesmvvm.data.database.model.main.RestrictionDbDT
         CuisineDbDTO::class,
         DishTypeDbDTO::class,
         RestrictionDbDTO::class,
-        RecipeCuisineJoin::class
+        RecipeCuisineJoin::class,
+        RecipeDishTypeJoin::class
     ],
     version = 1,
     exportSchema = false
