@@ -3,7 +3,7 @@ package com.diegomfv.splendidrecipesmvvm.data.server
 import com.diegomfv.data.source.RemoteDataSource
 import com.diegomfv.domain.Recipe
 import com.diegomfv.data.common.Response
-import com.diegomfv.splendidrecipesmvvm.data.fromServerDTOToDomain
+import com.diegomfv.splendidrecipesmvvm.data.database.mappers.fromServerDTOToDomain
 import retrofit2.HttpException
 
 //TODO
