@@ -7,7 +7,6 @@ import androidx.lifecycle.Observer
 import com.diegomfv.splendidrecipesmvvm.R
 import com.diegomfv.splendidrecipesmvvm.ui.common.startActivity
 import com.diegomfv.splendidrecipesmvvm.ui.common.toast
-import com.diegomfv.splendidrecipesmvvm.ui.main.MainActivityViewModel
 import org.koin.android.scope.currentScope
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -15,11 +14,11 @@ import org.koin.core.parameter.parametersOf
 class DetailActivity : AppCompatActivity() {
 
     companion object {
-        const val argument = "argument"
+        const val KEY = "key"
     }
 
     private val viewModel: DetailActivityViewModel by currentScope.viewModel(this) {
-        parametersOf(intent.getIntExtra(argument, -1))
+        parametersOf(intent.getIntExtra(KEY, -1))
     }
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
