@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun triggerEvent (eventModel: MainActivityViewModel.EventModel) {
         when (eventModel) {
-            is MainActivityViewModel.EventModel.Navigation -> startActivity<DetailActivity> {  }
+            is MainActivityViewModel.EventModel.Navigation -> startActivity<DetailActivity> { putExtra(DetailActivity.KEY, eventModel.recipe.id) }
             MainActivityViewModel.EventModel.RequestLocationPermission -> toast("Request location permissions")
         }
     }
