@@ -27,3 +27,8 @@ const val CUISINE_NAME = "cuisine_name"
 const val RECIPE_CUISINE_TABLE_NAME = "recipe_cuisine_table_name"
 const val RECIPE_DISH_TYPE_TABLE_NAME = "recipe_dish_type_table_name"
 
+const val FAVOURITE = "favourite"
+
+const val CUISINES = "cuisines"
+const val DISHTYPES = "dish_types"
+const val INGREDIENTS = "ingredients"

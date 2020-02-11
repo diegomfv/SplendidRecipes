@@ -4,17 +4,21 @@ import com.diegomfv.domain.Recipe
 import com.diegomfv.splendidrecipesmvvm.data.database.model.entititiesjoin.RecipeCuisineAssoc
 import com.diegomfv.splendidrecipesmvvm.data.database.model.entities.CuisineDb
 import com.diegomfv.splendidrecipesmvvm.data.database.model.entities.DishTypeDb
-import com.diegomfv.splendidrecipesmvvm.data.database.model.entities.RecipeDb
+import com.diegomfv.splendidrecipesmvvm.data.database.model.entities.RecipeDbTemp
 import kotlin.random.Random
 
 object TestUtil {
 
-    fun createRecipeDTO (id: Long) : RecipeDb {
-        return RecipeDb(
+    fun createRecipeDTO (id: Long) : RecipeDbTemp {
+        return RecipeDbTemp(
             id = id,
-            recipeName = "Title$id",
+            title = "Title$id",
             imageUrl = "",
-            readyInMinutes = 0
+            readyInMinutes = 0,
+            cuisines = listOf(),
+            dishTypes = listOf(),
+            favourite = false,
+            ingredients = listOf()
         )
     }
 

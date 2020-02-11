@@ -2,51 +2,67 @@ package com.diegomfv.splendidrecipesmvvm.data.database.mappers
 
 import com.diegomfv.splendidrecipesmvvm.data.model.dto.RecipeServerDTO
 import com.diegomfv.domain.Recipe
-import com.diegomfv.splendidrecipesmvvm.data.database.model.entities.RecipeDb
+import com.diegomfv.splendidrecipesmvvm.data.database.model.entities.RecipeDbTemp
 
 //TODO
-fun RecipeServerDTO.fromServerDTOToDomain () : Recipe {
+fun RecipeServerDTO.toRecipe () : Recipe {
     return Recipe(
         id = id ?: 0,
         title = title ?: "null title",
-        cuisines = cuisines ?: listOf(), //TODO
+        cuisines = cuisines ?: listOf(),
         imageUrl = image ?: "",
-        dishTypes = dishTypes ?: listOf(), //TODO
+        dishTypes = dishTypes ?: listOf(),
         readyInMinutes = readyInMinutes ?: 0,
-        ingredients = listOf() //TODO
+        ingredients = listOf()
     )
 }
 
-fun RecipeServerDTO.fromServerDTOToDatabaseDTO () : RecipeDb {
-    return RecipeDb(
+fun RecipeServerDTO.toRecipeDbTemp () : RecipeDbTemp {
+    return RecipeDbTemp(
         id = id ?: 0,
-        recipeName = title ?: "null title",
-//        cuisines = cuisines ?: listOf(),
+        title = title ?: "null title",
+        cuisines = cuisines ?: listOf(),
         imageUrl = image ?: "",
-//        dishTypes = dishTypes ?: listOf(),
-        readyInMinutes = readyInMinutes ?: 0
+        dishTypes = dishTypes ?: listOf(),
+        readyInMinutes = readyInMinutes ?: 0,
+        ingredients = listOf(),
+        favourite = false
     )
 }
 
-fun Recipe.fromDomainToDatabaseDTO () : RecipeDb {
-    return RecipeDb(
+fun Recipe.toRecipeDbTemp () : RecipeDbTemp {
+    return RecipeDbTemp(
         id = id,
-        recipeName = title,
-//        cuisines = cuisines,
+        title = title,
+        cuisines = cuisines,
         imageUrl = imageUrl,
-//        dishTypes = dishTypes,
-        readyInMinutes = readyInMinutes
+        dishTypes = dishTypes,
+        readyInMinutes = readyInMinutes,
+        ingredients = listOf(),
+        favourite = false
     )
 }
 
-fun RecipeDb.fromDatabaseDTOToDomain () : Recipe {
+fun RecipeDbTemp.toRecipe () : Recipe {
     return Recipe(
         id = id,
-        title = recipeName,
-        cuisines = listOf(), //TODO
+        title = title,
+        cuisines = cuisines,
         imageUrl = imageUrl,
-        dishTypes = listOf(), //TODO
+        dishTypes = dishTypes,
         readyInMinutes = readyInMinutes,
-        ingredients = listOf() //TODO
+        ingredients = listOf()
     )
 }
+
+//fun RecipeJoin.toDomain () : Recipe {
+//    return Recipe(
+//        id = recipe.id,
+//        title = recipe.recipeName,
+//        cuisines = cuisines.map { it.cuisineName },
+//        imageUrl = recipe.imageUrl,
+//        dishTypes = dishTypes.map { it.dishTypeName },
+//        readyInMinutes = recipe.readyInMinutes,
+//        ingredients = listOf()
+//    )
+//}

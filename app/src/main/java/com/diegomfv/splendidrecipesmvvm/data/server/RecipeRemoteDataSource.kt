@@ -1,10 +1,9 @@
 package com.diegomfv.splendidrecipesmvvm.data.server
 
+import com.diegomfv.data.common.Response
 import com.diegomfv.data.source.RemoteDataSource
 import com.diegomfv.domain.Recipe
-import com.diegomfv.data.common.Response
-import com.diegomfv.splendidrecipesmvvm.data.database.mappers.fromServerDTOToDomain
-import retrofit2.HttpException
+import com.diegomfv.splendidrecipesmvvm.data.database.mappers.toRecipe
 
 //TODO
 class RecipeRemoteDataSource(private val recipeRetrofit: RecipeRetrofit) : RemoteDataSource {
@@ -21,11 +20,11 @@ class RecipeRemoteDataSource(private val recipeRetrofit: RecipeRetrofit) : Remot
                 )
                 .await()
                 .recipeServerDTOS
-                ?.map { it.fromServerDTOToDomain() } ?: listOf()
+                ?.map { it.toRecipe() } ?: listOf()
 
             Response.Success(response)
 
-        } catch (e: HttpException) {
+        } catch (e: Exception) {
             Response.Failure(e)
         }
     }

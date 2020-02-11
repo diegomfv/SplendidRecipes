@@ -1,13 +1,18 @@
 package com.diegomfv.splendidrecipesmvvm.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.diegomfv.data.common.Response
 import com.diegomfv.splendidrecipesmvvm.R
 import com.diegomfv.splendidrecipesmvvm.ui.common.startActivity
 import com.diegomfv.splendidrecipesmvvm.ui.common.toast
 import com.diegomfv.splendidrecipesmvvm.ui.detail.DetailActivity
+import com.diegomfv.usecase.GetRandomRecipesUseCase
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.koin.android.scope.currentScope
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -15,6 +20,8 @@ class MainActivity : AppCompatActivity() {
 
     private val mainActivityViewModel: MainActivityViewModel by currentScope.viewModel(this)
     lateinit var adapter: RecipesAdapter
+
+    private val getRandomRecipesUseCase: GetRandomRecipesUseCase by currentScope.inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +37,14 @@ class MainActivity : AppCompatActivity() {
             mainActivityViewModel.refreshAdapter()
         }
 
+        GlobalScope.launch {
+            val response = getRandomRecipesUseCase.invoke(10)
+            when (response) {
+                is Response.Success -> {
+                    response.result.forEach { println(it.toString()) }
+                }
+            }
+        }
     }
 
     private fun updateUI (uiModel: MainActivityViewModel.UiModel) {
