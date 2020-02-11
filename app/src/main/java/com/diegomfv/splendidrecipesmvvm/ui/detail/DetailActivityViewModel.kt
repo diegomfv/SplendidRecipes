@@ -5,10 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import com.diegomfv.domain.Recipe
 import com.diegomfv.splendidrecipesmvvm.ui.common.Event
 import com.diegomfv.splendidrecipesmvvm.ui.common.ScopedViewModel
-import com.diegomfv.splendidrecipesmvvm.ui.common.logSth
+import com.diegomfv.usecase.GetRecipeByIdUseCase
+import com.diegomfv.usecase.UpdateFavouriteUseCase
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class DetailActivityViewModel(
+    private val recipeId: Long,
+    private val getRecipeByIdUseCase: GetRecipeByIdUseCase,
+    private val updateFavouriteUseCase: UpdateFavouriteUseCase,
     uiDispatcher: CoroutineDispatcher
 ) : ScopedViewModel(uiDispatcher) {
 
@@ -16,20 +22,29 @@ class DetailActivityViewModel(
     val model: LiveData<UiModel>
         get() {
             if (_model.value == null) {
-                logSth("_model triggered //")
+                getRecipe(recipeId)
             }
             return _model
         }
 
     val event = MutableLiveData<Event<EventModel>>()
 
-    fun onFavouriteClicked() {
+    fun onFavouriteClicked(favourite: Boolean) {
+        GlobalScope.launch {
+            updateFavouriteUseCase.invoke(recipeId, favourite)
+        }
+    }
 
+    fun getRecipe(recipeId: Long) {
+        GlobalScope.launch {
+            val recipe = getRecipeByIdUseCase.invoke(recipeId)
+            _model.postValue(UiModel.Content(recipe))
+        }
     }
 
     sealed class UiModel {
         object Loading : UiModel()
-        data class Content(val recipes: List<Recipe>) : UiModel()
+        data class Content(val recipe: Recipe) : UiModel()
         data class Error(val throwable: Throwable) : UiModel()
     }
 

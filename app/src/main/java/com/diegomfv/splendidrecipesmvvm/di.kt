@@ -13,6 +13,8 @@ import com.diegomfv.splendidrecipesmvvm.ui.detail.DetailActivityViewModel
 import com.diegomfv.splendidrecipesmvvm.ui.main.MainActivity
 import com.diegomfv.splendidrecipesmvvm.ui.main.MainActivityViewModel
 import com.diegomfv.usecase.GetRandomRecipesUseCase
+import com.diegomfv.usecase.GetRecipeByIdUseCase
+import com.diegomfv.usecase.UpdateFavouriteUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidApplication
@@ -45,11 +47,13 @@ private val appModule = module {
 
 val dataModule = module {
 //    factory { RegionRepository(get(), get()) }
-    factory { RecipesRepository(get(), get(named("apiKey"))) }
+    factory { RecipesRepository(get(), get(), get(named("apiKey"))) }
 }
 
 val usecaseModule = module {
     factory { GetRandomRecipesUseCase(get()) }
+    factory { GetRecipeByIdUseCase(get()) }
+    factory { UpdateFavouriteUseCase(get()) }
 }
 
 private val scopesModule = module {
@@ -59,7 +63,7 @@ private val scopesModule = module {
     }
 
     scope(named<DetailActivity>()) {
-        viewModel { DetailActivityViewModel(get()) }
+        viewModel { (recipeId: Long) -> DetailActivityViewModel(recipeId, get(), get(), get()) }
 //        scoped { FindMovieById(get()) }
 //        scoped { ToggleMovieFavorite(get()) }
     }

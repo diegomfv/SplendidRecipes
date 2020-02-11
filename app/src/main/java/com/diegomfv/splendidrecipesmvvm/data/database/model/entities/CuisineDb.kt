@@ -8,16 +8,16 @@ import com.diegomfv.splendidrecipesmvvm.data.database.constants.CUISINE_ID
 import com.diegomfv.splendidrecipesmvvm.data.database.constants.CUISINE_NAME
 import com.diegomfv.splendidrecipesmvvm.data.database.constants.CUISINE_TABLE_NAME
 
-@Entity (tableName = CUISINE_TABLE_NAME,
-    indices = [Index(value = [CUISINE_NAME], unique = true)]
-)
-data class CuisineDb(
-
-    @PrimaryKey (autoGenerate = true)
-    @ColumnInfo(name = CUISINE_ID)
-    val cuisineId: Long? = null,
-
-    @ColumnInfo(name = CUISINE_NAME)
-    val cuisineName: String
-
-)
+//@Entity (tableName = CUISINE_TABLE_NAME,
+//    indices = [Index(value = [CUISINE_NAME], unique = true)]
+//)
+//data class CuisineDb(
+//
+//    @PrimaryKey (autoGenerate = true)
+//    @ColumnInfo(name = CUISINE_ID)
+//    val cuisineId: Long? = null,
+//
+//    @ColumnInfo(name = CUISINE_NAME)
+//    val cuisineName: String
+//
+//)

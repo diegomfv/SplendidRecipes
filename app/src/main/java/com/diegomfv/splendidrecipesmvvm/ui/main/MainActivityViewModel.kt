@@ -34,7 +34,7 @@ class MainActivityViewModel (
     //TODO Dummy for the moment
     fun refreshAdapter() {
         GlobalScope.launch {
-            val randomRecipes = getRandomRecipesUseCase.invoke()
+            val randomRecipes = getRandomRecipesUseCase.invoke(5)
             when (randomRecipes) {
                 is Response.Success -> _model.postValue(UiModel.Content(randomRecipes.result))
                 is Response.Failure -> _model.postValue(UiModel.Error(randomRecipes.throwable))

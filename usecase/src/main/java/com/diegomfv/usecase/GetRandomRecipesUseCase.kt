@@ -8,7 +8,7 @@ class GetRandomRecipesUseCase (
     private val recipesRepository: RecipesRepository
 ) {
 
-    suspend fun invoke(amountOfRecipes: Int = 5): Response<List<Recipe>> {
+    suspend fun invoke(amountOfRecipes: Int): Response<List<Recipe>> {
         return recipesRepository.getRandomRecipes("vegetarian", amountOfRecipes)
     }
 }
